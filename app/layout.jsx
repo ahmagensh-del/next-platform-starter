@@ -1,4 +1,5 @@
 import './globals.css';
+import ThemeSwitch from "../components/ThemeSwitch";
 
 export const metadata = {
   title: 'AuraScan AI',
@@ -8,14 +9,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="fade-in">
-        
+      <body className="fade-in relative">
+
+        {/* THEME SWITCH BUTTON */}
+        <ThemeSwitch />
+
         {/* MAIN BACKGROUND */}
         <div className="absolute inset-0 -z-10">
-          {/* dark theme */}
-          <div className="hidden dark:block w-full h-full bg-[radial-gradient(circle_at_50%_20%,#0a0f1c,#00040a,#000)]" />
           
-          {/* light theme */}
+          {/* DARK THEME — Deep Space Black */}
+          <div className="hidden dark:block w-full h-full bg-[radial-gradient(circle_at_50%_20%,#0a0f1c,#00040a,#000)]" />
+
+          {/* LIGHT THEME — Crystal Silver */}
           <div className="block dark:hidden w-full h-full bg-[linear-gradient(160deg,#f2f4f6,#e5eaef,#d9dfe7)]" />
         </div>
 
