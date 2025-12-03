@@ -1,21 +1,27 @@
+import GlassPanel from "../components/GlassPanel";
+import AuraSphere from "../components/AuraSphere";
+
 export default function Page() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-b from-black via-[#040b17] to-[#02060f] text-white relative overflow-hidden">
+    <div className="relative min-h-screen flex items-center justify-center p-6">
 
-      {/* BIG AURA SPHERE (background) */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-40 blur-3xl pointer-events-none">
-        <div className="w-[900px] h-[900px] rounded-full bg-gradient-to-br from-[#0ff] to-[#8f00ff] animate-pulse" />
+      {/* BACKGROUND BIG AURA SPHERE */}
+      <div className="absolute inset-0 flex items-center justify-center -z-10 opacity-50">
+        <div className="aura-big w-[900px] h-[900px] rounded-full bg-gradient-to-br from-[#00eaff] to-[#7b00ff] blur-3xl" />
       </div>
 
       {/* MAIN PANEL */}
-      <div className="backdrop-blur-2xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-10 max-w-lg w-full relative z-10">
-
-        {/* SMALL AURA SPHERE */}
-        <div className="mx-auto mb-8 w-40 h-40 rounded-full bg-gradient-to-br from-[#00eaff] to-[#c400ff] animate-ping shadow-[0_0_40px_#7f00ff]" />
+      <GlassPanel>
+        
+        {/* SMALL AURA */}
+        <div className="flex justify-center mb-10">
+          <AuraSphere size={180} />
+        </div>
 
         {/* TEXT */}
         <h1 className="text-4xl font-bold text-center mb-3">AuraScan AI</h1>
-        <p className="text-center text-lg text-gray-300 mb-8">
+
+        <p className="text-center text-lg text-gray-300 mb-10">
           See how others really see you.
         </p>
 
@@ -23,11 +29,13 @@ export default function Page() {
         <input
           type="text"
           placeholder="Paste your photo link..."
-          className="w-full p-4 rounded-xl bg-black/30 border border-white/20 focus:outline-none"
+          className="w-full p-4 rounded-xl bg-black/30 border border-white/20 text-white focus:outline-none mb-6"
         />
 
         {/* SCAN BUTTON */}
-        <button className="w-full mt-6 p-4 rounded-xl bg-gradient-to-r from-[#00eaff] to-[#c400ff] text-black font-semibold shadow-xl hover:opacity-90 transition">
+        <button
+          className="btn-gradient w-full p-4 rounded-xl font-semibold shadow-xl hover:opacity-90 transition"
+        >
           Scan Aura
         </button>
 
@@ -39,7 +47,7 @@ export default function Page() {
         >
           Open EmeraldCabinet
         </a>
-      </div>
+      </GlassPanel>
     </div>
   );
 }
