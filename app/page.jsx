@@ -1,63 +1,45 @@
-import Link from 'next/link';
-import { Card } from 'components/card';
-import { ContextAlert } from 'components/context-alert';
-import { Markdown } from 'components/markdown';
-import { RandomQuote } from 'components/random-quote';
-import { getNetlifyContext } from 'utils';
-
-const contextExplainer = `
-The card below is rendered on the server based on the value of \`process.env.CONTEXT\` 
-([docs](https://docs.netlify.com/configure-builds/environment-variables/#build-metadata)):
-`;
-
-const preDynamicContentExplainer = `
-The card content below is fetched by the client-side from \`/quotes/random\` (see file \`app/quotes/random/route.js\`) with a different quote shown on each page load:
-`;
-
-const ctx = getNetlifyContext();
-
 export default function Page() {
-    return (
-        <div className="flex flex-col gap-12 sm:gap-16">
-            <section>
-                <ContextAlert className="mb-6" />
-                <h1 className="mb-4">Netlify Platform Starter – Next.js</h1>
-                <p className="mb-6 text-lg">
-                    Deploy the latest version of Next.js — including Turbopack, React Compiler, and the new caching APIs
-                    — on Netlify in seconds. No configuration or custom adapter required.
-                </p>
-                <Link href="https://docs.netlify.com/frameworks/next-js/overview/" className="btn btn-lg sm:min-w-64">
-                    Read the Docs
-                </Link>
-            </section>
-            {!!ctx && (
-                <section className="flex flex-col gap-4">
-                    <Markdown content={contextExplainer} />
-                    <RuntimeContextCard />
-                </section>
-            )}
-            <section className="flex flex-col gap-4">
-                <Markdown content={preDynamicContentExplainer} />
-                <RandomQuote />
-            </section>
-        </div>
-    );
-}
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-b from-black via-[#040b17] to-[#02060f] text-white relative overflow-hidden">
 
-function RuntimeContextCard() {
-    const title = `Netlify Context: running in ${ctx} mode.`;
-    if (ctx === 'dev') {
-        return (
-            <Card title={title}>
-                <p>Next.js will rebuild any page you navigate to, including static pages.</p>
-            </Card>
-        );
-    } else {
-        const now = new Date().toISOString();
-        return (
-            <Card title={title}>
-                <p>This page was statically-generated at build time ({now}).</p>
-            </Card>
-        );
-    }
+      {/* BIG AURA SPHERE (background) */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-40 blur-3xl pointer-events-none">
+        <div className="w-[900px] h-[900px] rounded-full bg-gradient-to-br from-[#0ff] to-[#8f00ff] animate-pulse" />
+      </div>
+
+      {/* MAIN PANEL */}
+      <div className="backdrop-blur-2xl bg-white/10 border border-white/20 shadow-2xl rounded-3xl p-10 max-w-lg w-full relative z-10">
+
+        {/* SMALL AURA SPHERE */}
+        <div className="mx-auto mb-8 w-40 h-40 rounded-full bg-gradient-to-br from-[#00eaff] to-[#c400ff] animate-ping shadow-[0_0_40px_#7f00ff]" />
+
+        {/* TEXT */}
+        <h1 className="text-4xl font-bold text-center mb-3">AuraScan AI</h1>
+        <p className="text-center text-lg text-gray-300 mb-8">
+          See how others really see you.
+        </p>
+
+        {/* INPUT */}
+        <input
+          type="text"
+          placeholder="Paste your photo link..."
+          className="w-full p-4 rounded-xl bg-black/30 border border-white/20 focus:outline-none"
+        />
+
+        {/* SCAN BUTTON */}
+        <button className="w-full mt-6 p-4 rounded-xl bg-gradient-to-r from-[#00eaff] to-[#c400ff] text-black font-semibold shadow-xl hover:opacity-90 transition">
+          Scan Aura
+        </button>
+
+        {/* TELEGRAM BUTTON */}
+        <a
+          href="https://t.me/EmeraldCabinet"
+          target="_blank"
+          className="w-full mt-4 p-4 block rounded-xl bg-white/20 border border-white/30 text-center hover:bg-white/30 transition"
+        >
+          Open EmeraldCabinet
+        </a>
+      </div>
+    </div>
+  );
 }
